@@ -2,9 +2,11 @@
 
 include('../imports.php');
 
-// delete_post.php?id=12345
+if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+    die('Invalid HTTP method. Use DELETE instead of ' . $_SERVER['REQUEST_METHOD']);
+}
 
-$id = $_GET['id'] ?? 0;
+$id = $_REQUEST['id'] ?? 0;
 
 if (empty($id)) {
     die('');

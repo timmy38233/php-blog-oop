@@ -2,9 +2,13 @@
 
 include('../imports.php');
 
-$title = $_POST['title'] ?? '';
-$content = $_POST['content'] ?? '';
-$authorName = $_POST['author_name'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die('Invalid HTTP method. Use POST instead of ' . $_SERVER['REQUEST_METHOD']);
+}
+
+$title = $_REQUEST['title'] ?? '';
+$content = $_REQUEST['content'] ?? '';
+$authorName = $_REQUEST['author_name'] ?? '';
 
 if (in_array('', [$title, $content, $authorName])) {
     die('Invalid Input');
